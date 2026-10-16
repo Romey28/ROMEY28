@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -9,123 +10,155 @@
             box-sizing: border-box;
         }
 
+        html, body {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+        }
+
         body {
-            font-family: Arial, sans-serif;
-            background-color: #f2f2f6;
+            font-family: Arial, Helvetica, sans-serif;
+            background: #f2f2f6;
             display: flex;
             justify-content: center;
             padding: 20px;
-            margin: 0;
-            min-width: 0;
         }
 
+        /* Desktop: same overall card structure */
         .card-container {
-            background-color: white;
-            width: 750px;
-            max-width: 100%;
-            padding: 25px 35px;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            width: min(750px, 100%);
+            background: #fff;
+            padding: 18px 22px 22px;
+            box-shadow: 0 4px 8px rgba(0,0,0,.10);
         }
+
         .header {
             display: flex;
             align-items: center;
+            width: 100%;
             margin-bottom: 5px;
-        }
-        .logo {
-            width: 60px;
-            height: 80px;
-            border: 1px solid #000;
-            border-radius: 5px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            font-size: 12px;
-            font-weight: bold;
-        }
-        .logo img {
-            max-width: 100%;
-            height: auto;
-            object-fit: contain;
         }
 
-        .logo-circle {
-            width: 30px;
-            height: 30px;
-            border-radius: 50%;
+        .logo {
+            width: 70px;
+            height: 90px;
+            flex: 0 0 70px;
             border: 1px solid #000;
-            margin-bottom: 5px;
-            background: conic-gradient(#4caf50 0% 33%, #ffeb3b 33% 66%, #2196f3 66% 100%);
+            border-radius: 5px;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #fff;
         }
+
+        .logo img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            display: block;
+        }
+
         .college-info {
-            flex-grow: 1;
+            flex: 1;
+            min-width: 0;
             text-align: center;
+            padding: 0 10px;
         }
+
         .college-info h1 {
+            margin: 0 0 4px;
             color: #d32f2f;
             font-size: 22px;
-            margin: 0 0 5px 0;
-            font-weight: bold;
+            line-height: 1.15;
+            font-weight: 700;
         }
+
         .college-info h2 {
+            margin: 0;
             color: #d32f2f;
             font-size: 18px;
-            margin: 0;
-            font-weight: bold;
+            line-height: 1.15;
+            font-weight: 700;
         }
+
         .sub-header {
             text-align: center;
-            font-size: 13px;
-            font-weight: bold;
-            color: #333;
-            margin-top: 15px;
+            color: #555;
+            font-size: 12px;
+            line-height: 1.2;
+            font-weight: 700;
+            margin: 13px 0 9px;
+        }
+
+        .divider,
+        .footer-divider {
+            border-top: 1px solid #283593;
+        }
+
+        .divider {
             margin-bottom: 10px;
         }
-        .divider {
-            border-top: 1px solid #283593;
-            margin-bottom: 15px;
-        }
+
+        /*
+          The important part:
+          keep the details and photo side-by-side at every size.
+          Only the widths/fonts shrink on phones.
+        */
         .content {
-            display: flex;
-            justify-content: space-between;
+            display: grid;
+            grid-template-columns: minmax(0, 1fr) 25%;
+            column-gap: 10px;
+            align-items: start;
         }
+
         .details-table {
-            width: 70%;
+            width: 100%;
             border-collapse: collapse;
+            table-layout: fixed;
         }
+
         .details-table td {
-            padding: 8px 0;
-            font-size: 13px;
+            padding: 5px 0;
+            font-size: 11.5px;
+            line-height: 1.25;
             vertical-align: top;
             color: #000;
+            overflow-wrap: normal;
         }
+
         .details-table td:first-child {
-            font-weight: bold;
             width: 35%;
+            padding-right: 8px;
+            font-weight: 700;
+            white-space: normal;
         }
+
         .photo-box-container {
-            width: 25%;
+            width: 100%;
             display: flex;
             flex-direction: column;
             align-items: flex-end;
-            padding-top: 10px;
+            padding-top: 1px;
         }
+
         .photo-box {
-            width: 130px;
+            width: 120px;
+            height: 140px;
             max-width: 100%;
-            height: 150px;
             border: 1px solid #000;
-            margin-bottom: 5px;
             display: flex;
             justify-content: center;
             align-items: center;
             color: #1976d2;
             font-size: 18px;
+            margin-bottom: 4px;
         }
+
         .sign-box {
             width: 130px;
-            max-width: 100%;
             height: 35px;
+            max-width: 100%;
             border: 1px solid #000;
             display: flex;
             justify-content: center;
@@ -133,134 +166,156 @@
             color: #1976d2;
             font-size: 18px;
         }
+
         .footer {
             text-align: center;
             color: #d32f2f;
-            font-weight: bold;
+            font-weight: 700;
             font-size: 20px;
-            margin-top: 25px;
-        }
-        .footer-divider {
-            border-top: 1px solid #283593;
-            margin-top: 10px;
+            margin-top: 17px;
         }
 
-        /* Responsive layout: keeps the same section positions and overall format */
+        .footer-divider {
+            margin-top: 8px;
+        }
+
+        /* Match the phone-sized reference */
         @media (max-width: 600px) {
             body {
-                padding: 10px;
+                padding: 14px 5px;
+                align-items: flex-start;
             }
 
             .card-container {
-                padding: 18px 15px;
-            }
-
-            .header {
-                align-items: center;
+                width: 100%;
+                padding: 17px 15px 18px;
+                box-shadow: 0 3px 8px rgba(0,0,0,.10);
             }
 
             .logo {
-                width: 55px;
-                height: 70px;
-                flex-shrink: 0;
+                width: 66px;
+                height: 90px;
+                flex-basis: 66px;
             }
 
-            .logo img {
-                width: 55px;
-                height: 55px;
+            .college-info {
+                padding: 0 5px;
             }
 
             .college-info h1 {
-                font-size: clamp(14px, 4.2vw, 22px);
-                line-height: 1.2;
+                font-size: 20px;
+                line-height: 1.12;
             }
 
             .college-info h2 {
-                font-size: clamp(12px, 3.5vw, 18px);
+                font-size: 16px;
+                line-height: 1.15;
             }
 
             .sub-header {
-                font-size: clamp(10px, 3vw, 13px);
-                margin-top: 12px;
-                margin-bottom: 8px;
+                font-size: 10.5px;
+                margin: 12px 0 8px;
+                white-space: nowrap;
             }
 
             .divider {
-                margin-bottom: 10px;
+                margin-bottom: 8px;
+            }
+
+            .content {
+                grid-template-columns: minmax(0, 1fr) 28%;
+                column-gap: 8px;
             }
 
             .details-table td {
-                font-size: clamp(10px, 2.8vw, 13px);
-                padding: 6px 0;
-                overflow-wrap: anywhere;
+                font-size: 10px;
+                line-height: 1.25;
+                padding: 5px 0;
             }
 
             .details-table td:first-child {
-                width: 35%;
-                padding-right: 6px;
-            }
-
-            .photo-box-container {
-                padding-top: 6px;
+                width: 37%;
+                padding-right: 5px;
             }
 
             .photo-box {
-                width: clamp(75px, 22vw, 120px);
-                height: clamp(90px, 25vw, 140px);
-                font-size: clamp(14px, 4vw, 18px);
+                width: 108px;
+                height: 128px;
+                font-size: 17px;
             }
 
             .sign-box {
-                width: clamp(75px, 20vw, 110px);
-                height: clamp(20px, 7vw, 35px);
-                font-size: clamp(14px, 4vw, 18px);
+                width: 108px;
+                height: 31px;
+                font-size: 17px;
             }
 
             .footer {
-                font-size: clamp(16px, 5vw, 20px);
-                margin-top: 18px;
+                font-size: 20px;
+                margin-top: 15px;
+            }
+
+            .footer-divider {
+                margin-top: 8px;
             }
         }
 
-        @media (max-width: 360px) {
+        /* Narrow phones: reduce text instead of allowing overlap */
+        @media (max-width: 430px) {
             .card-container {
-                padding-left: 10px;
-                padding-right: 10px;
+                padding-left: 13px;
+                padding-right: 13px;
             }
 
             .logo {
-                width: 48px;
-                height: 62px;
-            }
-
-            .logo img {
-                width: 48px;
-                height: 48px;
+                width: 62px;
+                height: 84px;
+                flex-basis: 62px;
             }
 
             .college-info h1 {
-                font-size: 13px;
+                font-size: 17px;
             }
 
             .college-info h2 {
-                font-size: 11px;
+                font-size: 14px;
+            }
+
+            .sub-header {
+                font-size: 9.2px;
+            }
+
+            .content {
+                grid-template-columns: minmax(0, 1fr) 27%;
+                column-gap: 7px;
             }
 
             .details-table td {
                 font-size: 9px;
+                line-height: 1.25;
+                padding: 4.5px 0;
+            }
+
+            .details-table td:first-child {
+                width: 38%;
+                padding-right: 4px;
             }
 
             .photo-box {
-                width: 70px;
-                height: 85px;
+                width: 94px;
+                height: 115px;
             }
 
             .sign-box {
-                width: 70px;
-                height: 20px;
+                width: 94px;
+                height: 29px;
+            }
+
+            .footer {
+                font-size: 19px;
+                margin-top: 13px;
             }
         }
-
     </style>
 </head>
 <body>
@@ -268,7 +323,7 @@
 <div class="card-container">
     <div class="header">
         <div class="logo">
-            <img src="logo.png" width="100" height="100">
+            <img src="logo.png" alt="DAV College Logo">
         </div>
         <div class="college-info">
             <h1>DAV COLLEGE, SECTOR 10, CHANDIGARH</h1>
@@ -276,20 +331,18 @@
         </div>
     </div>
     
-    <div class="sub-header">
-       
-    </div>
+    <div class="sub-header">Following are the verified details against this IDENTITY CUM LIBRARY CARD</div>
     <div class="divider"></div>
 
     <div class="content">
         <table class="details-table">
             <tr>
                 <td>Enrolment No</td>
-                <td>79478</td>
+                <td>79480</td>
             </tr>
             <tr>
                 <td>Roll No</td>
-                <td>17312</td>
+                <td>17324</td>
             </tr>
             <tr>
                 <td>Class</td>
@@ -297,31 +350,31 @@
             </tr>
             <tr>
                 <td>Student Name</td>
-                <td>PONEET SINGH</td>
+                <td>RATINDER SINGH</td>
             </tr>
             <tr>
                 <td>Father Name</td>
-                <td>ROOP SINGH</td>
+                <td>HUKAM SINGH</td>
             </tr>
             <tr>
                 <td>Mother Name</td>
-                <td>DALWINDER KAUR</td>
+                <td>SUKHWINDER KAUR</td>
             </tr>
             <tr>
                 <td>Mobile No.</td>
-                <td>7717650392</td>
+                <td>7986572182</td>
             </tr>
             <tr>
                 <td>Father Mobile No.</td>
-                <td>9888438293</td>
+                <td>9646087067</td>
             </tr>
             <tr>
                 <td>Permanent Address</td>
-                <td>NEW SOOD COLONY ,Morinda</td>
+                <td>SECTOR 66 , MOHALI</td>
             </tr>
             <tr>
                 <td>Correspondence Address</td>
-                <td>NEW SOOOD COLONY ,Morinda</td>
+                <td>SECTOR 66 , MOHALI</td>
             </tr>
         </table>
 
